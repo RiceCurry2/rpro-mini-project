@@ -1,0 +1,207 @@
+\usepackage[utf8]{inputenc} % symboler, såsom æøå eller lignende
+\usepackage{textcomp} % flere symboler, såsom €
+\usepackage{fontawesome}
+\usepackage{graphicx} % Muliggør brug af figurer
+\usepackage{float} % Muliggør positionering af figurer
+\usepackage{wrapfig} % Muliggør tekst og figur på samme linje
+\usepackage{caption}
+\usepackage{subcaption} % Muliggør subfigures
+\usepackage{hyperref} % interaktive referencer!
+\usepackage{csquotes} % bruges af babel pakken
+\usepackage[english]{babel} % rapportens sprog. Skal også rettes i "main.tex" under "\selectlanguage"
+\usepackage[font = small, labelfont = bf]{caption} % til mindre figur tekster hvor figur nummeret er fremhævet med fed
+\usepackage{xcolor} % Til brugerdefinerede farvekoder
+\usepackage{mathptmx} % Til brugerdefinerede font størrelser
+\usepackage{pdfpages} % for an kunne importere hele pdf sider
+\usepackage{booktabs} % for at definere /toprule og /midrule
+\usepackage{hyperref} %Muliggør brug af hyperref
+
+% load a colour package
+\usepackage{xcolor}
+\definecolor{aaublue}{RGB}{33,26,82}% dark blue
+\usepackage{graphicx} % Set up how figure and table captions are displayed
+
+\usepackage[font = small, labelfont = bf]{caption} % til mindre figur tekster hvor figur nummeret er fremhævet med fed
+\usepackage{xcolor} % Til brugerdefinerede farvekoder
+\usepackage{mathptmx} % Til brugerdefinerede font størrelser
+\usepackage{pdfpages} % for an kunne importere hele pdf sider
+\usepackage{booktabs} % for at definere /toprule og /midrule
+\usepackage{ulem} %math
+\usepackage{amsmath} %Math
+\usepackage{xcolor,colortbl} % farver i tabeller
+\usepackage{multicol}%kolonner
+\hyphenpenalty=100000 % *EKSPERIMENTIEL* Forhindrer automatisk deling af ord
+
+% ------ Marginer ------
+\usepackage[left = 2cm, right = 2cm, bottom = 3cm ,top = 3.5cm]{geometry} % juster selv marginerne ved at indtaste andre tal
+
+% ------ Farver ------
+\definecolor{chapterNumColor}{RGB}{150, 150, 150} % 255, 255, 255 er helt hvid. 0, 0, 0 er helt sort
+
+% ------ Lister ------
+% ducomentation for list options: http://www.texnia.com/archive/enumitem.pdf
+\usepackage{enumitem} % til redigering af lister
+\setlist{itemsep = 0.5cm, itemindent = 0cm, labelsep = 0.5cm, leftmargin = 0.5cm} % globale indstillinger for lister.
+
+% ------ Referencer ------
+% Biblatex cheat sheet: http://tug.ctan.org/info/biblatex-cheatsheet/biblatex-cheatsheet.pdf
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\appto{\bibsetup}{\raggedright}
+\addbibresource{referencer.bib} % fortæller hvad vores reference bibliotek hedder og hvor det er at finde i mappestrukturen
+
+
+%\DeclareFieldFormat{postnote}{s. #1} % ændrer "page" til "s." i kilder ved enkelte sider
+%\DeclareFieldFormat{multipostnote}{s. #1} % ændrer "pages" til "s." i kilder ved interval af sider
+
+% Sørger for at der står et al. når der er flere end to forfattere.
+\DefineBibliographyStrings{danish}{
+  andothers = {et\addabbrvspace al\adddot}
+}
+
+% ------ Indholdsfortegnelse (Table of contents (TOC)) ------
+\usepackage{tocloft}
+\setcounter{secnumdepth}{3} % jo højere tallet er, jo "dybere" overskrifter bliver nummereret. 3 giver Chapter, section, subsection og subsubsection
+\setcounter{tocdepth}{2} % dybden af indholdfortegnelsen. 1 viser chapter, section og sub
+% \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % prikker for parts
+% \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % prikker for chapters
+% \renewcommand{\cftsecleader}{\hfill} % fjern prikker for sections
+% \renewcommand{\cftsubsecleader}{\hfill} % prikker for subsections
+
+% ------ Sidehoved og sidefod ------
+\usepackage{lastpage} % Gør det muligt at få vist sidenummer for sidste side i rapporten.
+\usepackage{fancyhdr} % Pakke til at modificere sidehoved og sidefod
+\fancyhf{} % Sætter header og footer til ikke at indeholde noget - så vi er klar til at give det nyt indhold
+\setlength{\headheight}{15pt} % Bestemmer hvor langt nede sidehovedet vises
+\fancyfoot[R]{\thepage \ af \pageref{LastPage}} % Viser sidenummeret nederst til højre. Ændr "R" for at få det placeret et nyt sted
+\fancyhead[L]{\leftmark} % placerer sidehoved indhold i øverste venstre side
+
+\fancypagestyle{plain} % Brugerdefineret side når styletypen plain er valgt. I dette tilfælde er det hver gang et kapitel opstår. 
+{
+    \fancyhf{} % Sætter header og footer til ikke at indeholde noget - så vi er klar til at give det nyt indhold
+    \renewcommand{\headrulewidth}{0pt} % Fjerner linjen øverst under sidehovedet
+    \fancyfoot[R]{\thepage \ af \pageref{LastPage}} % Viser sidenummeret nederst til højre. Ændr "R" for at få det placeret et nyt sted
+}
+\pagestyle{fancy}
+
+% ------ Style for kapitlers sidehoved ------
+\usepackage{titlesec} % Til brugerdefinerede sidehoved
+\titleformat{\chapter}{\fontsize{25pt}{25pt}\bfseries\color{black}}{{\color{chapterNumColor}\thechapter}}{15pt}{} % sætter fonttypen, skriftstørrelsen og farven på kapitel
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt} %Kapitelhøjde
+\titleformat{\part}{\fontsize{40pt}{45pt}\bfseries\centering\color{black}}{{\color{chapterNumColor}\thepart}}{15pt}{}[\thispagestyle{empty}\addtocounter{page}{-1}] % sætter fonttypen, skriftstørrelsen og farven på parts
+
+% ------ Selvlavede kommandoer til citater ------
+
+\newcommand{\centerQuote}[3] % Indholdet i {} er navnet på den kommando der er lavet
+{
+    \begin{quote} % Sørger for at centrere dit citat
+        \textit{"#1"} - \parencite[#2]{#3} % Laver formatet "Citat her" - (Efternavn, Årstal, s. sidetal)
+    \end{quote} 
+}
+
+\newcommand{\inlineQuote}[3] % Indholdet i {} er navnet på den kommando der er lavet
+{\textit{"#1"} \parencite[#2]{#3}} % Laver formatet "Citat her" - (Efternavn, Årstal, s. sidetal)
+
+\usepackage{lipsum} % til at generere dummy text. Brug \lipsum[2] for at vise paragraf nr 2 i Lorem Ipsum. Brug \lipsum[4-7] for at vise paragraf 4 til 7 i Lorem Ipsum.
+
+% ------ ToDo Notes ------
+%ToDo Notes cheat sheet: https://mirrors.dotsrc.org/ctan/macros/latex/contrib/todonotes/todonotes.pdf
+\setlength{\marginparwidth}{2cm} % Retter fejl med marginer i ToDo notes.
+\usepackage{todonotes} % Muliggør brug af "ToDo notes" funktionalliteter
+
+%------ Glossary ------
+%Glossaries cheat sheet: https://mirrors.dotsrc.org/ctan/macros/latex/contrib/glossaries/glossariesbegin.pdf
+\usepackage{glossaries} % Muliggør brug af "glossaries funktionen"
+\makenoidxglossaries % Muliggør udskift af glossary-list i dokumentet
+\glstoctrue % Inkluderer glossary i toc
+\input{glossary} % Muliggør brug af glossary.tex for samlede definitioner
+
+
+%------ Boxes -------
+\newlength{\mylen}
+\settowidth{\mylen}{text to}
+
+
+%------- Timelines -------
+\usepackage{chronology}
+
+%------- Til at lave culonner -----
+\usepackage{multicol}
+
+%------- Til at vise program code -----
+\usepackage{inconsolata}
+\usepackage{listings}
+\lstset { %
+    language=C++,
+    basicstyle=\ttfamily\small,
+    numberstyle=\footnotesize,
+    numbers=left,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=2,
+    rulecolor=\color{black!30},
+    title=\lstname,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    breakatwhitespace=true,
+    framextopmargin=2pt,
+    framexbottommargin=2pt,
+	extendedchars=true,
+    literate={å}{{\r{a}}}1 {ø}{{\o{}}}1 {á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1,
+    %inputencoding=utf8
+}
+
+%------- Requirements table -------
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{longtable, array}
+% \setlength\extrarowheight{0pt}
+% \setlength{\arrayrulewidth}{0.3mm}
+\renewcommand{\arraystretch}{1.5}
+\usepackage{makecell}
+\usepackage{mwe}
+
+
+% ------ Strike through text --------
+\usepackage{soul}
+
+
+%------- Bash color coding ----------
+\lstset{ 
+    language=bash, % choose the language of the code
+    basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+    keywordstyle=\color{black}\bfseries, % style for keywords
+    numbers=left, % where to put the line-numbers
+    numberstyle=\tiny, % the size of the fonts that are used for the line-numbers
+    showspaces=false, % show spaces adding particular underscores
+    showstringspaces=false, % underline spaces within strings
+    showtabs=false, % show tabs within strings adding particular underscores
+    frame=single, % adds a frame around the code
+    tabsize=2, % sets default tabsize to 2 spaces
+    rulesepcolor=\color{gray},
+    rulecolor=\color{black},
+    captionpos=b, % sets the caption-position to bottom
+    breaklines=true, % sets automatic line breaking
+    breakatwhitespace=false, 
+    emph={rosrun,int,char,double,float,unsigned,void,bool},
+    emphstyle={\color{blue!50}},
+}
+
+%---------- Ditto mark---------
+
+\usepackage{tikz}
+\newcommand{\dittotikz}{%
+    \tikz{
+        \draw [line width=0.12ex] (-0.2ex,0) -- +(0,0.8ex)
+            (0.2ex,0) -- +(0,0.8ex);
+        \draw [line width=0.08ex] (-0.6ex,0.4ex) -- +(-1.5em,0)
+            (0.6ex,0.4ex) -- +(1.5em,0);
+    }%
+}
+
+%----------- For having recurring text in the report to show the same ----------
+
+\usepackage{clipboard}
+
+
+\usepackage{multicol} % to insert columns

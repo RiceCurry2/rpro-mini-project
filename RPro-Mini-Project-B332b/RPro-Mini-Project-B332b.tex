@@ -1,0 +1,55 @@
+\documentclass[a4paper, 12pt]{report}
+\input{90 - Setup/preamble}
+\input{90 - Setup/macros}
+
+
+\begin{document}
+%% FRONT MATTER
+\fontfamily{ptm}\selectfont % times font
+\pagenumbering{Roman} %use roman page numbering in the frontmatter
+
+\input{01 - Front/frontpage} % forside
+
+\cleardoublepage
+
+\input{01 - Front/titlepage}  % titelside (EN)
+\input{01 - Front/preface}
+\newpage
+\selectlanguage{english} %Skal også rettes i "preample.tex" under "\usepackage[danish, english]"
+%%%%%
+
+%% Contents
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+%\listoftodos
+%%%%%
+
+%% MAIN MATTER
+\pagestyle{fancy}
+\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+%%%%%
+
+%% INPUT HERUNDER
+\input{RPro-Mini-Project-B332b/02 - Sections/01-Description}
+\input{RPro-Mini-Project-B332b/02 - Sections/02-Hardware-and-software-components}
+\input{RPro-Mini-Project-B332b/02 - Sections/03-Implementation-details}
+
+
+
+%%%%%
+
+
+%%Backend
+\printbibliography[
+heading=bibintoc,
+title={Bibliografi}
+]
+
+
+\printnoidxglossary[sort=letter,nonumberlist]
+
+\input{appendices}
+%%%%%
+
+\end{document}
