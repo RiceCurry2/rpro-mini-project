@@ -7,13 +7,16 @@
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="kuru@todo.todo">kuru</maintainer>
+  <maintainer email="jane.doe@student.aau.uk">Jesper</maintainer>
+  <maintainer email="jane.doe@student.aau.uk">Maiken</maintainer>
+  <maintainer email="jane.doe@student.aau.uk">Kasper</maintainer>
+  <maintainer email="knje20@student.aau.uk">Kjartan</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
+  <license>MIT</license>
 
 
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
@@ -25,7 +28,10 @@
   <!-- Author tags are optional, multiple are allowed, one per tag -->
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <author email="jane.doe@student.aau.uk">Jesper</author>
+  <author email="jane.doe@student.aau.uk">Maiken</author>
+  <author email="jane.doe@student.aau.uk">Kasper</author>
+  <author email="knje20@student.aau.uk">Kjartan</author>
 
 
   <!-- The *depend tags are used to specify dependencies -->
@@ -49,6 +55,9 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>turtlesim</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
