@@ -365,3 +365,10 @@ CATKIN_IGNORE
 RPro-Mini-Project-B332b/RPro-Mini-Project-B332b.pdf
 RPro-Mini-Project-B332b/.vscode/settings.json
 .vscode/settings.json
+code/.catkin_tools/profiles/default/packages/rpro-mini-project/devel_manifest.txt
+code/.catkin_tools/profiles/default/packages/catkin_tools_prebuild/devel_manifest.txt
+code/.catkin_tools/profiles/default/devel_collisions.txt
+code/src/rpro-mini-project/.vscode/settings.json
+code/src/rpro-mini-project/.vscode/c_cpp_properties.json
+code/.catkin_tools/README
+code/.catkin_tools/VERSION
