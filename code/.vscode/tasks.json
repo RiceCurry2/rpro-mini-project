@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "type": "shell",
+    "task": "build",
+    "command": "catkin build",
+    "problemMatcher": [
+        "$catkin-gcc"
+    ],
+    "group": {
+        "kind": "build",
+        "isDefault": true
+    }
+}
