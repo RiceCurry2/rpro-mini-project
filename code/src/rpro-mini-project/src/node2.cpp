@@ -8,31 +8,26 @@ namespace mineoperation {
     private:
 	ros::NodeHandle n_;             // NodeHandle definition
     ros::Subscriber mine_sub;       // Klargøring til subscriber (I må selv lige ændre navnet)
+    int dummyValue;                 // Definition of dummy value
 
 
-    //
-    //
-    //
-    // Methods go below this
+    // Methods go below this //////////////////////////////////////////////////////////////////////
 
 
     // Dummy function for publisher, change stuff as needed.
     void Dummyfunction(const geometry_msgs::Point p) {
-        // code
+        dummyValue = 1;
     }
 
 
-    // Methods end here
-    //
-    //
-    // 
+    // Methods end here ////////////////////////////////////////////////////////////////////////////
+    
 
-
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Corona distance added to constructor
 
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     // Constructor for the MiningOutput class            
@@ -40,7 +35,11 @@ namespace mineoperation {
     MiningOutput() :
 
     // Nodehandle initializing
-    n_()
+    n_(),
+
+
+    // Initializing of global values
+    dummyValue(0)
 
     {
 
