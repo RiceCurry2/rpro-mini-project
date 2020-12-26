@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "ros/ros.h"
 #include "geometry_msgs/Point.h" // Used in dummy function
 
@@ -103,7 +105,7 @@ namespace mine_operation {
             RM_YCoord--;
         }
         else
-            puts("Ugyldigt input");
+            std::cout << "Ugyldigt input";
     }
 
     //The robot moves forward two units
@@ -127,7 +129,7 @@ namespace mine_operation {
             RM_YCoord++;
         }
         else
-            puts("Ugyldigt input");
+            std::cout << "Ugyldigt input";
     }
 
     //The robot moves forward three unit
@@ -160,7 +162,7 @@ namespace mine_operation {
             direction='W';
             break;
         }
-        printf("\rHeading %c. Placering (x,y):%d,%d",direction,RM_XCoord,RM_YCoord);
+        std::cout << "Heading " << direction << "Placering (x,y): (" << RM_XCoord << ", " << RM_YCoord << ")";
     }
 
     //-------------
@@ -172,119 +174,119 @@ namespace mine_operation {
         int selection = 0;
 
         while(!RM_Done){
-            system("cls");
-            printf("dobRM.h help text, page 1 of 2\n");
-            printf("Functions:\n");
-            printf("1: Previous Page\n");
-            printf("2: RM_Initialise()\n");
-            printf("3: RM_TurnRight()\n");
-            printf("4: RM_TurnLeft()\n");
-            printf("5: RM_FullTurn()\n");
-            printf("6: RM_MoveForward()\n");
-            printf("7: RM_MoveForwardDouble()\n");
-            printf("8: RM_MoveBackward()\n");
-            printf("9: Next Page\n");
-            printf("0: Exit Menu\n");
-            printf("Enter selection to read more...\n");
-            scanf("%d",&selection);
+            system("clear");
+            std::cout <<    "dobRM.h help text, page 1 of 2\n" <<
+                            "Functions:\n" <<
+                            "1: Previous Page\n" <<
+                            "2: RM_Initialise()\n" <<
+                            "3: RM_TurnRight()\n" <<
+                            "4: RM_TurnLeft()\n" <<
+                            "5: RM_FullTurn()\n" <<
+                            "6: RM_MoveForward()\n" << 
+                            "7: RM_MoveForwardDouble()\n" <<
+                            "8: RM_MoveBackward()\n" <<
+                            "9: Next Page\n" <<
+                            "0: Exit Menu\n" <<
+                            "Enter selection to read more...\n";
+            std::cin >> selection;
 
             switch(selection){
                 case 1:
-                    system("cls");
-                    printf("No previous page\n");
-                    printf("press any key to return to menu...\n");
-                    getch();
+                    system("clear");
+                    std::cout <<    "No previous page\n" <<
+                                    "press any key to return to menu...\n";
+                    pause();
                     break;
                 case 2:
-                    system("cls");
-                    printf("Name:   RM_Initialize\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Sets up local and global variables\n");
-                    printf("Att.:   Must run before any movements can be carried out\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_Initialize\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Sets up local and global variables\n" <<
+                                    "Att.:   Must run before any movements can be carried out\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 3:
-                    system("cls");
-                    printf("Name:   RM_TurnRight\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Changes the robots heading a quarter circle to the right\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_TurnRight\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Changes the robots heading a quarter circle to the right\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 4:
-                    system("cls");
-                    printf("Name:   RM_TurnLeft\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Changes the robots heading a quarter circle to the left\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_TurnLeft\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Changes the robots heading a quarter circle to the left\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 5:
-                    system("cls");
-                    printf("Name:   RM_FullTurn\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Changes the robots heading by 180 degrees\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_FullTurn\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Changes the robots heading by 180 degrees\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 6:
-                    system("cls");
-                    printf("Name:   RM_MoveForward\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Moves the robot forward one square\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_MoveForward\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Moves the robot forward one square\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 7:
-                    system("cls");
-                    printf("Name:   RM_MoveForwardDouble\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Moves the robot forward two squares\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_MoveForwardDouble\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Moves the robot forward two squares\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 8:
-                    system("cls");
-                    printf("Name:   RM_BackForward\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Moves the robot backward one square\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_BackForward\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Moves the robot backward one square\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
 
                 case 9:
                     HelpPageTwo();
                     break;
                 case 0:
-                    system("cls");
+                    system("clear");
                     RM_Done = 1;
                     break;
                 default:
-                    system("cls");
-                    printf("Invalid selection\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Invalid selection\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
             }
         }
@@ -296,57 +298,57 @@ namespace mine_operation {
         int selectiontwo=0;
 
         while(!done){
-            system("cls");
-            printf("dobRM.h help text, page 2 of 2\n");
-            printf("Functions:\n");
-            printf("1: Previous Page\n");
-            printf("2: EchoPositionAndHeading()\n");
-            printf("3: Sprint()\n");
-            printf("4: ()\n");
-            printf("5: ()\n");
-            printf("6: ()\n");
-            printf("7: ()\n");
-            printf("8: ()\n");
-            printf("9: Next Page\n");
-            printf("0: Exit Menu\n");
-            printf("Enter selection to read more...\n");
-            scanf("%d",&selectiontwo);
+            system("clear");
+            std::cout <<    "dobRM.h help text, page 2 of 2\n" <<
+                            "Functions:\n" <<
+                            "1: Previous Page\n" <<
+                            "2: EchoPositionAndHeading()\n" <<
+                            "3: Sprint()\n" <<
+                            "4: ()\n" <<
+                            "5: ()\n" <<
+                            "6: ()\n" <<
+                            "7: ()\n" <<
+                            "8: ()\n" <<
+                            "9: Next Page\n" <<
+                            "0: Exit Menu\n" <<
+                            "Enter selection to read more...\n";
+            std::cin >> selectiontwo;
 
             switch(selectiontwo){
                 case 1:
-                    system("cls");
+                    system("clear");
                     done=1;
                     break;
                 case 2:
-                    system("cls");
-                    printf("Name:   RM_EchoPosotionAndHeading\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Prints the robots current position (x,y) and heading(N/E/S/W) to terminal\n");
-                    printf("Att.:   None\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_EchoPosotionAndHeading\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Prints the robots current position (x,y) and heading(N/E/S/W) to terminal\n" <<
+                                    "Att.:   None\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 3:
-                    system("cls");
-                    printf("Name:   RM_Sprint\n");
-                    printf("Class:  Function\n");
-                    printf("Input:  None\n");
-                    printf("Output: None\n");
-                    printf("Effect: Moves the robot forward three squares\n");
-                    printf("Att.:   Only works, if the robots is facing along an x-axis or y-axis\n");
-                    printf("press any key to return to menu...");
-                    getch();
+                    system("clear");
+                    std::cout <<    "Name:   RM_Sprint\n" <<
+                                    "Class:  Function\n" <<
+                                    "Input:  None\n" <<
+                                    "Output: None\n" <<
+                                    "Effect: Moves the robot forward three squares\n" <<
+                                    "Att.:   Only works, if the robots is facing along an x-axis or y-axis\n" <<
+                                    "press any key to return to menu...";
+                    pause();
                     break;
                 case 9:
-                    system("cls");
-                    printf("No further pages\n");
-                    printf("press any key to return to menu...\n");
-                    getch();
+                    system("clear");
+                    std::cout <<    "No further pages\n" <<
+                                    "press any key to return to menu...\n";
+                    pause();
                     break;
                 case 0:
-                    system("cls");
+                    system("clear");
                     RM_Done=1;
                     done=1;
                     break;
@@ -391,24 +393,23 @@ namespace mine_operation {
 
     //Robotten kører fra indgang til mineraldepot
     void MoveFromEntranceToMinerals(){
-        printf("Moving to mineraldeposit...\n");
-        printf("\n");
+        std::cout << "Moving to mineraldeposit...\n\n";
         RM_TurnRight();
         RM_Sprint();
         RM_TurnLeft();
         RM_MoveForwardDouble();
         RM_TurnLeft();
         RM_MoveForward();
-        printf("Cart at mineraldeposit\n");
-        printf("Traveltime: 335 sec\n");
-        printf("\n");
+        std::cout <<    "Cart at mineraldeposit\n" <<
+                        "Traveltime: 335 sec\n\n";
+        pause();
         TimeSpent+=335;
     }
 
     //Robotten kører fra mineraldepot til lossepunkt
     void MoveToUnload(){
-        printf("Moving to unload point...\n");
-        printf("\n");
+        std::cout << "Moving to unload point...\n\n";
+        
         CartTimer=0;
         RM_MoveBackward();
         RM_TurnLeft();
@@ -417,27 +418,26 @@ namespace mine_operation {
         RM_MoveForwardDouble();
         RM_TurnRight();
         RM_MoveForward();
-        printf("Cart at unload point\n");
-        printf("Traveltime: 350 sec\n");
-        printf("\n");
+        std::cout <<    "Cart at unload point\n" <<
+                        "Traveltime: 350 sec\n\n";
+        
         TimeSpent+=350;
-        printf("Unloading cart...\n");
-        printf("\n");
+        std::cout << "Unloading cart...\n\n";
+        
         Cart=0;
         CartFull=0;
-        printf("Cart empty\n");
-        printf("Time spent unloading: 70 sec\n");
-        printf("Amount of ore unloaded: 4 units");
+        std::cout <<    "Cart empty\n" <<
+                        "Time spent unloading: 70 sec\n" <<
+                        "Amount of ore unloaded: 4 units\n";
         OreCollected+=4;
-        printf("\n");
+        
         TimeSpent+=70;
 
     }
 
     //Robotten kører fra lossepunkt til mineraldepot
     void MoveFromUnloadToMinerals(){
-        printf("Moving to mineraldeposit...\n");
-        printf("\n");
+        std::cout << "Moving to mineraldeposit...\n\n";
         RM_MoveBackward();
         RM_TurnRight();
         RM_MoveForwardDouble();
@@ -445,9 +445,8 @@ namespace mine_operation {
         RM_MoveForwardDouble();
         RM_TurnRight();
         RM_MoveForward();
-        printf("Cart at mineral deposit\n");
-        printf("Traveltime: 350 sec\n");
-        printf("\n");
+        std::cout <<    "Cart at mineral deposit\n" <<
+                        "Traveltime: 350 sec\n\n";
         TimeSpent+=350;
     }
 
@@ -457,10 +456,10 @@ namespace mine_operation {
             MineMinerals();
             MoveToUnload();
             MoveFromUnloadToMinerals();
-            printf("Total time spent: %d sec\n", TimeSpent);
-            printf("Total amount of ore collected: 4 units\n");
-            printf("Press any key to return to menu\n");
-            getch();
+            std::cout <<    "Total time spent: " << TimeSpent << " sec\n" <<
+                            "Total amount of ore collected: 4 units\n" <<
+                            "Press any key to return to menu\n";
+            pause();
             DoneMining=1;
         }
     }
@@ -476,10 +475,10 @@ namespace mine_operation {
             MoveFromUnloadToMinerals();
             }
             else{
-            printf("Total time spent: %d sec\n", TimeSpent);
-            printf("Total amount of ore collected: %d units\n",OreCollected);
-            printf("Press any key to return to menu\n");
-            getch();
+            std::cout <<    "Total time spent: " << TimeSpent << " sec\n" <<
+                            "Total amount of ore collected: " << OreCollected << " units\n" <<
+                            "Press any key to return to menu\n";
+            pause();
             done24h=1;
             }
         }
@@ -491,11 +490,10 @@ namespace mine_operation {
         while(!IsCartFull()){
                 Cart++;
                 CartTimer+=60;
-                printf("   ***Mining***\n");
-                printf("\n");
+                std::cout << "   ***Mining***\n\n";
         }
-        printf("Time spent mining: %d sec\n", CartTimer);
-        printf("\n");
+        std::cout << "Time spent mining: " << CartTimer << " sec\n";
+        
         TimeSpent+=CartTimer;
     }
 
@@ -510,63 +508,70 @@ namespace mine_operation {
             TimeSpent=0;
             OreCollected=0;
 
-            system("cls");
-            printf("***African blood diamonds inc mining mannager***\n");
-            printf("Choose function:\n");
-            printf("1: Initiate mining starting from entrance\n");
-            printf("2: Initiate mining starting from mineral deposit\n");
-            printf("3: Initiate 24 hour mining starting from entrance\n");
-            printf("4: Initiate 24 hour mining starting from mineral deposit\n");
-            printf("0: Exit menu\n");
-            scanf("%d",&Choice);
+            system("clear");
+            std::cout <<    "***African blood diamonds inc mining mannager***\n" <<
+                            "Choose function:\n" <<
+                            "1: Initiate mining starting from entrance\n" <<
+                            "2: Initiate mining starting from mineral deposit\n" <<
+                            "3: Initiate 24 hour mining starting from entrance\n" <<
+                            "4: Initiate 24 hour mining starting from mineral deposit\n" <<
+                            "0: Exit menu\n";
+            std::cin >> Choice;
 
             switch(Choice){
             case 1:
-                system("cls");
+                system("clear");
                 MoveFromEntranceToMinerals();
                 MiningProgram();
                 break;
             case 2:
-                system("cls");
+                system("clear");
                 MiningProgram();
                 break;
             case 3:
-                system("cls");
+                system("clear");
                 MoveFromEntranceToMinerals();
                 MiningProgram24H();
                 break;
             case 4:
-                system("cls");
+                system("clear");
                 MiningProgram24H();
                 break;
             case 0:
-                system("cls");
+                system("clear");
                 done=1;
                 break;
             default:
-                printf("Unknown input\n");
-                printf("Press any key to return to menu\n");
-                getch();
+                std::cout <<    "Unknown input\n" <<
+                                "Press any key to return to menu\n";
+                pause();
             }
         }
     }
 
     //Tjekker om minevognen er fuld
     int IsCartFull(){
-        printf("***Checking cart***\n");
-        printf("\n");
+        std::cout << "***Checking cart***\n\n";
+        
         if (Cart<4){
             CartTimer+=10;
             return 0;
         }
         else if(Cart==4){
             CartTimer+=10;
-            printf("  ***Cart full***\n");
-            printf("\n");
+            std::cout << "  ***Cart full***\n\n";
+            
             return 1;
         }
         else
-            printf("***Cart error!***\n");
+            std::cout << "***Cart error!***\n";
+    }
+
+    void pause() 
+    {
+        std::cin.clear();
+        //std::cout << std::endl << "Press any key to continue...";
+        std::cin.ignore().get();
     }
     
 
@@ -596,14 +601,15 @@ namespace mine_operation {
        
     RM_XCoord(0),
     RM_YCoord(0),
-    RM_Heading(0)
+    RM_Heading(1)
 
     {
+        SetProgramToExecute();
 
-    // Publisher (change name, type and info as needed)
-    mine_pub = n_.advertise<geometry_msgs::Point>("/mine_message",10);
+        // Publisher (change name, type and info as needed)
+        mine_pub = n_.advertise<geometry_msgs::Point>("/mine_message",10);
 
-    std::cout << "MiningCart class initialized" << std::endl;
+        std::cout << "MiningCart class initialized" << std::endl;
 
     }
     
