@@ -53,7 +53,7 @@ namespace mineoperation {
     // Deconstrcutor for the MiningOutput class
     ~MiningOutput() {}
     };
-}
+} /*namespace*/
 
 int main(int argc, char** argv)
 {
