@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(rpro-mini-project)
+project(rpro_mini_project)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
  add_compile_options(-std=c++11)
@@ -9,7 +9,7 @@ project(rpro-mini-project)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-#  message_generation
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -46,11 +46,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  logOutput.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -67,10 +66,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  # std_msgs  # Or other packages containing msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,7 +103,9 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES rpro-mini-project
-#  CATKIN_DEPENDS other_catkin_pkg
+ CATKIN_DEPENDS
+  roscpp
+  message_runtime
 #  DEPENDS system_lib
 )
 
@@ -120,12 +121,16 @@ include_directories(
 )
 
 # Build node 1 and add exe
-add_executable(node1 src/node1.cpp)
-target_link_libraries(node1 ${catkin_LIBRARIES})
+add_executable(MiningCart src/node1.cpp)
+target_link_libraries(MiningCart ${catkin_LIBRARIES})
 
 # Build node 2 and add exe
-add_executable(node2 src/node2.cpp)
-target_link_libraries(node2 ${catkin_LIBRARIES})
+add_executable(MiningOutput src/node2.cpp)
+target_link_libraries(MiningOutput ${catkin_LIBRARIES})
+
+# Build dummy node and add exe
+add_executable(dummy src/dummy.cpp)
+target_link_libraries(dummy ${catkin_LIBRARIES})
 
 #############
 ## Install ##
@@ -168,4 +173,3 @@ target_link_libraries(node2 ${catkin_LIBRARIES})
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
-
