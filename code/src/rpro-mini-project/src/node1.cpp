@@ -9,8 +9,10 @@ namespace mine_operation {
     class MiningCart
     {
     private:
-	ros::NodeHandle nh;
-    ros::Publisher mine_pub; // Klargøring til subscriber (I må selv lige ændre navnet)
+
+	ros::NodeHandle nh;      // Nodehandle definition
+    ros::Publisher mine_pub; // mine_pub definition
+
 
     //----------------------//----------------------//----------------------//----------------------//----------------------//
     //---Global Variables---//---Global Variables---//---Global Variables---//---Global Variables---//---Global Variables---//
@@ -123,7 +125,7 @@ namespace mine_operation {
         {
             logVar = "cls\r";
             printLog();
-            logVar = "Ugyldigt input\r";
+            logVar = "Invalid input\r";
             printLog();
         }
     }
@@ -160,7 +162,7 @@ namespace mine_operation {
         {
             logVar = "cls\r";
             printLog();
-            logVar = "Ugyldigt input\r";
+            logVar = "Invalid input\r";
             printLog();
         }
     }
@@ -211,7 +213,7 @@ namespace mine_operation {
     //---Mining Functions---
     //----------------------
 
-    //Robotten kører fra indgang til mineraldepot
+    //The robot moves from entrance to mineral deposit
     void MoveFromEntranceToMinerals()
     {
         logVar.clear();
@@ -231,7 +233,7 @@ namespace mine_operation {
         printLog();
     }
 
-    //Robotten kører fra mineraldepot til lossepunkt
+    //The robot moves from mineral deposit to unload point
     void MoveToUnload()
     {
         logVar.clear();
@@ -259,7 +261,7 @@ namespace mine_operation {
         TimeSpent+=70;
     }
 
-    //Robotten kører fra lossepunkt til mineraldepot
+    //The robot moves from unload point to mineral deposit
     void MoveFromUnloadToMinerals()
     {
         logVar.clear();
@@ -278,7 +280,7 @@ namespace mine_operation {
         TimeSpent+=350;
     }
 
-    //Robotten kører til og fra, samt udfører minearbejde
+    //The robot mines minerals, moves to unload point and returns to mineral deposit
     void MiningProgram()
     {
         stringBuilder.clear();
@@ -296,7 +298,7 @@ namespace mine_operation {
         }
     }
 
-    //Robotten udfører minearbejde
+    //The robot mines minerals
     void MineMinerals()
     {
         logVar.clear();
@@ -311,7 +313,7 @@ namespace mine_operation {
         TimeSpent+=CartTimer;
     }
 
-    //Tjekker om minevognen er fuld
+    //The robot checks if the cart is full
     int IsCartFull()
     {
         cartFull = 0;
@@ -324,7 +326,6 @@ namespace mine_operation {
         else if(Cart==4){
             CartTimer+=10;
             cartFull = 4;
-
             return 1;
         }
         else
@@ -334,7 +335,7 @@ namespace mine_operation {
         }
     }
 
-    //Robotten kører til og fra, samt udfører minearbejde i 24 timer
+    //The robot mines minerals, moves to unload point and returns to mineral deposit. This is repeated for 24 hours
     void MiningProgram24H()
     {
         int done24h = 0;
@@ -366,7 +367,7 @@ namespace mine_operation {
     //---Misc SubRoutines---
     //-------------------------
 
-    //Sætter programmet igang fra konsol
+    //User interface
     void SetProgramToExecute()
     {
         while(!done)
@@ -392,6 +393,8 @@ namespace mine_operation {
             switch(selection)
             {
             case 1:
+                // Makes the robot move from entrance to mineral deposit, mine minerals, move to unload point,
+                // unload and return to mineral deposit
                 system("clear");
                 std::cout << "Mining ..." << std::endl;
                 logVar = "cls";
@@ -403,6 +406,7 @@ namespace mine_operation {
                 pause();
                 break;
             case 2:
+                // Makes the robot mine minerals, move to unload point, unload and return to mineral deposit
                 system("clear");
                 std::cout << "Mining ..." << std::endl;
                 logVar = "cls";
@@ -413,6 +417,8 @@ namespace mine_operation {
                 pause();
                 break;
             case 3:
+                // Makes the robot move from entrance to mineral deposit, mine minerals, move to unload point,
+                // unload and return to mineral deposit. This cycle repeats for 24 hrs
                 system("clear");
                 std::cout << "Mining ..." << std::endl;
                 logVar = "cls";
@@ -424,6 +430,7 @@ namespace mine_operation {
                 pause();
                 break;
             case 4:
+                // Makes the robot mine minerals, move to unload point, unload and return to mineral deposit. This cycle repeats for 24 hrs
                 system("clear");
                 std::cout << "Mining ..." << std::endl;
                 logVar = "cls";
@@ -434,6 +441,7 @@ namespace mine_operation {
                 pause();
                 break;
             case 5:
+                // Publishes position and heading on logOutput
                 system("clear");
                 logVar = "cls";
                 printLog();
@@ -442,10 +450,12 @@ namespace mine_operation {
                 pause();
                 break;
             case 0:
+                // Ends while loop
                 system("clear");
                 done=1;
                 break;
             default:
+                // Catches any unknown input
                 std::cout <<    "Unknown input\n" <<
                                 "Press any key to return to menu\n";
                 pause();
@@ -453,14 +463,14 @@ namespace mine_operation {
         }
     }
 
-
+    // Pauses program execution untill uses input is recieved
     void pause() 
     {
         std::cin.clear();
         std::cin.ignore().get();
     }
     
-    // Dummy publisher (change stuff as needed)
+    // Publisher function (Places content of logVar in logOutput.comm and publishes once via mine_pub)
     void printLog()
     {
         rpro_mini_project::logOutput log;
@@ -501,7 +511,7 @@ namespace mine_operation {
     RM_Heading(1)
 
     {
-        // Publisher
+        // Publisher (Advertises publication on nodehandle)
         mine_pub = nh.advertise<rpro_mini_project::logOutput>("miningLog",10);
 
         std::cout << "MiningCart class initialized" << std::endl;
@@ -512,15 +522,16 @@ namespace mine_operation {
     // Deconstrcutor for the MiningCart class
     ~MiningCart() {}
     };
-}
+} /*namespace*/
 
 int main(int argc, char** argv)
 {
+    // Initialiser for ROS
     ros::init(argc, argv, "MiningCart");
 
+    // Instantiation of MiningCart class
     mine_operation::MiningCart node1;
-
-    ros::spin();
     
+    // Returnvalue of main-function
     return 0;
 }

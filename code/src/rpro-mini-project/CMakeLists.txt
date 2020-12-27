@@ -128,9 +128,6 @@ target_link_libraries(MiningCart ${catkin_LIBRARIES})
 add_executable(MiningOutput src/node2.cpp)
 target_link_libraries(MiningOutput ${catkin_LIBRARIES})
 
-# Build dummy node and add exe
-add_executable(dummy src/dummy.cpp)
-target_link_libraries(dummy ${catkin_LIBRARIES})
 
 #############
 ## Install ##
