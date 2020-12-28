@@ -1,0 +1,159 @@
+\chapter{Methods}
+
+\iffalse
+Description of necessary hardware and software components. The project should at least feature 2 ROS nodes that are in communication with each other. And it should implement at least two functions. Usage of actual robot hardware is optional in this mini project.
+
+I have splitted this into two chapters, "methods" and "implementation".
+\fi
+
+\section{C++}
+
+C++ is a general-purpose programming language that is based on the former, but still active, C language. C++ added more functionalities, such as object-oriented programming which is missing from C, and being based on C, also includes the C capabilities to code on a low-level environment \cite{c++}.
+
+ROS has been designed to work alongside C++, plus other programming languages, such as Python and Java.
+
+\section{Robotic Operation System (ROS)}
+
+Can be described as a meta-operating system, also called middleware. It acts like an independent system between the operating that runs on the computer/laptop one is working on and lower level hardware \cite{ros_core_components}.
+
+The core elements of ROS are three things:
+\begin{enumerate}
+\setlength{\itemsep}{0.05\baselineskip}
+    \item Communications Infrastructure
+    \item  Robot-Specific Features
+    \item Tools
+\end{enumerate}
+
+Having a communication infrastructure, means that the behaviour of ROS has a setup like a network in computing. In network computing one has a router that is connected to the computers on the network and acts like the go between between computer-to-computer. In ROS it is called nodes and these nodes are programs talking with each other in network behaviour and ROS functions as the master, i.e. the router.
+
+These nodes have functionalities of asking, or in ROS terms, subscribing, for data from other nodes and publishing data out to the network that other nodes can subscribe to.\\
+
+ROS can also record data that runs through its network so one can analyse the data and behaviour at later time, also use this recordings and re-simulate the data.
+
+The robot-specific feature libraries that help one generate results, or part of the results. These libraries can be mapping, localisation, pose estimate and navigation amongst others.\\
+
+%ROS is open source, so features get added to the lists continuously.\\
+
+Tools that come with the ROS can help while building up the program(s). Rviz can be used for simulation, testing out the behaviour of the robot and its sensors in a virtual environment, and rqt for looking at the network of nodes running when we run our program(s) and look at the communication between the nodes \cite{ros_core_components}.
+
+\subsection{ROS Publisher}
+
+\iffalse
+  /**
+   * The advertise() function is how you tell ROS that you want to
+   * publish on a given topic name. This invokes a call to the ROS
+   * master node, which keeps a registry of who is publishing and who
+   * is subscribing. After this advertise() call is made, the master
+   * node will notify anyone who is trying to subscribe to this topic name,
+   * and they will in turn negotiate a peer-to-peer connection with this
+   * node.  advertise() returns a Publisher object which allows you to
+   * publish messages on that topic through a call to publish().  Once
+   * all copies of the returned Publisher object are destroyed, the topic
+   * will be automatically unadvertised.
+   *
+   * The second parameter to advertise() is the size of the message queue
+   * used for publishing messages.  If messages are published more quickly
+   * than we can send them, the number here specifies how many messages to
+   * buffer up before throwing some away.
+   */
+   
+    /**
+    * The publish() function is how you send messages. The parameter
+    * is the message object. The type of this object must agree with the type
+    * given as a template parameter to the advertise<>() call, as was done
+    * in the constructor above.
+    */
+    
+    Tell the master that we are going to be publishing a message of type std\_msgs/String on the topic chatter. This lets the master tell any nodes listening on chatter that we are going to publish data on that topic. The second argument is the size of our publishing queue. In this case if we are publishing too quickly it will buffer up a maximum of 1000 messages before beginning to throw away old ones.
+
+    NodeHandle::advertise() returns a ros::Publisher object, which serves two purposes: 1) it contains a publish() method that lets you publish messages onto the topic it was created with, and 2) when it goes out of scope, it will automatically unadvertise. 
+
+\fi
+
+With ROS Publishing function we send massages across the ROS. This is one of the simpler functions of communication in ROS, called Topics. %More advanced communication functions are Services or Actionlib.
+
+\begin{lstlisting}
+    ros::Publisher "object" = nh.advertise<"template">("topic", "queue");
+\end{lstlisting}
+\begin{itemize}
+\setlength{\itemsep}{0.05\baselineskip}
+    \item "object" - name of the object initialisation of the Publisher function 
+    \item "template" - how the data inside the message object is structured.
+    \item "topic"\\- topic name telling subscribers where to find this published data on the network of nodes handled by the master, router.
+    \item "queue"\\- the amount of how many messages are stored of those that haven't been used, if newer messages are generated, and the queue is full, the oldest messages will be discarded, and the newest added on top.
+\end{itemize}
+
+\subsection{ROS Subscriber}
+
+\iffalse
+  /**
+   * The subscribe() call is how you tell ROS that you want to receive messages
+   * on a given topic.  This invokes a call to the ROS
+   * master node, which keeps a registry of who is publishing and who
+   * is subscribing.  Messages are passed to a callback function, here
+   * called chatterCallback.  subscribe() returns a Subscriber object that you
+   * must hold on to until you want to unsubscribe.  When all copies of the Subscriber
+   * object go out of scope, this callback will automatically be unsubscribed from
+   * this topic.
+   *
+   * The second parameter to the subscribe() function is the size of the message
+   * queue.  If messages are arriving faster than they are being processed, this
+   * is the number of messages that will be buffered up before beginning to throw
+   * away the oldest ones.
+   */
+  ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+  
+\fi
+
+With ROS Subscribing function we receive messages across the ROS. This is one of the simpler functions of communication in ROS, called Topics. %More advanced communication functions are Services or Actionlib.
+
+\begin{lstlisting}
+    ros::Subscriber "object" = n.subscribe("topic", "queue", "function");
+\end{lstlisting}
+\begin{itemize}
+\setlength{\itemsep}{0.05\baselineskip}
+    \item "object" - name of the object initialisation of the Subscriber function 
+    \item "topic"\\- topic name, telling the ROS which published data the this subscriber wants to connect to and receive data from. 
+    \item "queue"\\- the amount of how many messages are stored of those that haven't been used, if newer messages are generated, and the queue is full, the oldest messages will be discarded, and the newest added on top. 
+    \item "function" - when a message is received, the message will be sent to a function for further processing.
+\end{itemize}
+
+\newpage
+
+\subsection{ROS custom messages}
+Custom messages are messages where the user has defined a specific content. The messages consist of a number of fields (lines) each containing a type and a name. The data can be accessed using \textit{messagename.field}.\\
+\\
+The message is created by making a text file with the \textit{.msg} extension which is the compiled using catkin. The .msg-file is compiled into a header containing a class where the members are the fields of the original .msg-file.\\
+\\
+The custom massages can contain a range of types such as various integer variants, bool, strings and arrays. For a complete list refer to ROS Wiki.\\
+\\
+Source: ROS Wiki\cite{ROS_msg}
+
+\subsection{String builder}
+In order to transmit text AND variable data from one node to the other it is necessary to create a string builder, since ROS custom messages will only accept std::string messages and a std::ostringstream variable is needed to store multiple strings and variables together.
+
+Practically we did this by creating a ostringstream variable called \textit{stringBuilder} and inserting strings and variables into this as needed. Subsequently the string variable for publication (logVar) is set equal to the stringBuilders \textit{.str}-member function.\\
+\\
+\begin{lstlisting}
+    std::ostringstream stringBuilder;
+    std::string logVar:
+    
+    stringbuilder << string << var << anotherString << anotherVar;
+    logVar = stringBuilder.str();
+\end{lstlisting}
+
+\subsection{Clearing the string}
+Regularly string and ostringstream can be leared using their \textit{.clear}-member function. In ROS messages however there are no clear functions. This is solved be inserting the ASCII return carriage (\textit{\textbackslash r}) command at the end of each text line. This forces the publisher to write the next line of text at the beginning of the string contained in the message.
+
+%\newpage
+
+%\subsection{Clear screen through ROS}
+%When building a text display using text from one node and printing it in another, it is sometimes useful to be able to clear the screen in the subscribing node.
+
+%We solved this be creating an if-statement which reads \textit{"cls"} as a parameter that calls \textit{system("clear");}. This way we are able to send a simple string to the subscribing node telling it that we want the screen cleared.
+%\begin{lstlisting}
+%    if (logOut.comm == "cls")
+%        {
+%            system("clear");
+%        }
+%\end{lstlisting}
