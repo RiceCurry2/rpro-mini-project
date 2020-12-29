@@ -9,10 +9,8 @@ namespace mine_operation {
     class MiningCart
     {
     private:
-
 	ros::NodeHandle nh;      // Nodehandle definition
     ros::Publisher mine_pub; // mine_pub definition
-
 
     //----------------------//----------------------//----------------------//----------------------//----------------------//
     //---Global Variables---//---Global Variables---//---Global Variables---//---Global Variables---//---Global Variables---//
@@ -167,7 +165,7 @@ namespace mine_operation {
         }
     }
 
-    //The robot moves forward three unit
+    //The robot moves forward three units
     void RM_Sprint()
     {
         RM_MoveForward();
@@ -326,6 +324,7 @@ namespace mine_operation {
         else if(Cart==4){
             CartTimer+=10;
             cartFull = 4;
+
             return 1;
         }
         else

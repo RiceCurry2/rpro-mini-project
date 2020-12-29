@@ -13,16 +13,16 @@ namespace mineoperation {
 
 
     // Subscriber function
-    void printLog(const rpro_mini_project::logOutput& logOut) {
+    void printLog(const rpro_mini_project::logOutput& logOut)
+    {
         // If .comm contains the string "cls" the system("clear")-command is called and the terminal is cleared
         if (logOut.comm == "cls")
-            {
-                system("clear");
-            }
+        {
+            system("clear");
+        }
         // If .comm contains anything other than the string "cls", the terminal is cleared and the contend of .comm is printed to the terminal
         else
         {
- //           system("clear");
             std::cout << logOut.comm << std::endl;
         }
     }
