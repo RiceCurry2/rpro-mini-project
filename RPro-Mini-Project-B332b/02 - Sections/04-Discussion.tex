@@ -1,0 +1,23 @@
+\chapter{Discussion}\label{discussion}
+\setlength{\parindent}{0ex}
+
+The project containing the mining cart system has been an experience where several decisions have been made regarding the C++ code and ROS interaction. Firstly, it was to add a namespace to the two nodes and construct classes containing methods for executing various functions. This has been done as an overall personal preference, but also because the raw code is a lot easier to navigate when structured like this. The object oriented approach brings modularity into the code, and future expansion would be less complicated with this structure, this "expansion" would be done by converting some of the current methods to header files and enabling usage across nodes and subtracting them into classes relative to their function, but still in a structured manner as the code progresses in size. 
+
+\iffalse
+A note to the above:
+The object oriented approach adds modularity to the code which prevents monolith coding, thus enabling the ability to easily scale the code.
+\fi
+
+
+\vspace{2mm}
+
+A second initial thought in the planning stage of the mining cart software was to make a custom message containing a string, this has been done since a custom message gives more control but also the fact that a message can be changed in its original structure, thus adding the ability to expand the software as needed or if needed.
+
+\vspace{40mm}
+
+{\let\clearpage\relax \chapter{Conclusion}}
+
+This mini-project shows a demonstration of a simple ROS package with two nodes, that contains a separate publisher in the first node, which publishes a custom string message to a subscriber in the second node.
+
+The main functionality of the two nodes is as described in \textit{\autoref{implementation}} and this implementation are in the project groups opinion concluded as a success with room and functionality for expansion as described in \textit{\autoref{discussion}}.
+

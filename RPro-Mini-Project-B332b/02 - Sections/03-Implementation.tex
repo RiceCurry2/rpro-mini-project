@@ -1,8 +1,21 @@
-\chapter{Implementation}
+\chapter{Implementation}\label{implementation}
+
+This chapter will be a description of the implementation of the methods described in chapter \ref{methods}, introduction-wise a flowchart (figure \ref{flowchart1}) will be included giving a broad perspective on the implementation and the structure of mainly the first node, which handles the main part of the mining tasks and publishing of the "execution" time of the tasks, as well as the ores collected in the process. A flowchart for the second node will not be included, as this only handles separate console outputs as a callback function to the /mininglog topic.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth]{RPro-Mini-Project-B332b/00 - Images/broad_flowchart.png}
+  \caption{Broad flowchart of the first node}
+  \label{flowchart1}
+\end{figure}
+
+
+\newpage
 
 \section{Publisher}
-The ROS publisher publishes messages onto the ROS network of nodes for any subscriber to read. In the code this is handled as described below.\\
+The ROS publisher publishes messages onto the ROS network of nodes for any subscriber to read. In the code, this is handled as described below.\\
 \\
+\begin{figure}[!ht]
 \begin{lstlisting}
 void printLog()
     {
@@ -15,39 +28,60 @@ void printLog()
         ros::spinOnce;
     }     
 \end{lstlisting}
+\vspace{-10mm}
+\caption{ROS publisher}
+\end{figure}
+
 The $logOutput$ class of the $rpro\_mini\_project$ namespace is instantiated as \textit{log}. Then the contents of the class member \textit{comm} are set equal to the contents of the \textit{logVar} string variable.
 
-Next \textit{log} is passed as a parameter when the $mine\_pub.pubish$ function is called. $mine\_pub$ is described below. Lastly the class \textit{spinOnce} of the namespace \textit{ROS} is called. This causes ROS to run its functions once thus advertising the existence of a new message on the topic and pubishing the message.\\
+Next \textit{log} is passed as a parameter when the $mine\_pub.publish$ function is called. $mine\_pub$ is described below. Lastly the class \textit{spinOnce} of the namespace \textit{ROS} is called. This causes ROS to run its functions once thus advertising the existence of a new message on the topic and publishing the message.\\
 \\
+\begin{figure}[!ht]
 \begin{lstlisting}
     mine_pub = nh.advertise<rpro_mini_project::logOutput>("miningLog",10);
 \end{lstlisting}
-In $mine\_pub$ we have nodehandle.anvertise which advertises new messages onto the ROS network of nodes. In this case the message $rpro\_mini\_project::logOutput$ are advertised onto the topic \textit{miningLog} at 10Hz.
+\vspace{-10mm}
+\caption{Nodehandle for publisher}
+\end{figure}
+\\
+In $mine\_pub$ we have nodehandle.advertise which advertises new messages onto the ROS network of nodes. In this case the message $rpro\_mini\_project::logOutput$ is advertised onto the topic \textit{miningLog}.
+The second parameter is the message queue - how many messages will be kept in memory if our system cannot keep up with the flow of messages.
 
 \newpage
 
 \section{Subscriber}
-The ROS subscriber subscribes to topics on the ROS network of nodes and reads any advertised messages. In the code this is handled as described below.\\
+The ROS subscriber subscribes to topics on the ROS network of nodes and reads any advertised messages. In the code, this is handled as described below.\\
 \\
+\begin{figure}[!ht]
 \begin{lstlisting}
-void printLog(const rpro_mini_project::logOutput& logOut) {
+void printLog(const rpro_mini_project::logOutput& logOut)
+    {
         if (logOut.comm == "cls")
-            {
-                system("clear");
-            }
+        {
+            system("clear");
+        }
         else
         {
             std::cout << logOut.comm << std::endl;
         }
     }
 \end{lstlisting}
+\vspace{-10mm}
+\caption{ROS subscriber}
+\end{figure}
+
 The printLog function has a constant reference to $rpro\_mini\_project::logOutput$ which is instantiated as \textit{logOut}. When a message of the \textit{logOutput}-class is published in the \textit{miningLog}-topic the contents are passed through the if-statements.
 
 If the content of the class-member \textit{comm} equals "cls" the \textit{system}-function is called with the parameter "clear" which clears the terminal window.
 
 If \textit{comm} contains anything else, the contents are printed in the console.\\
 \\
+\begin{figure}[!ht]
 \begin{lstlisting}
 mine_sub = nh.subscribe("miningLog", 1000, &MiningOutput::printLog, this);
 \end{lstlisting}
-In $mine\_sub$ we have nodehandle.subscribe which subscribes to new messages - in this case on the \textit{miningLog}-topic. The second parameter is the message queue - how many messages will be kept in memory if our system cannot keep up with the flow of messages. Next is the pointer to the class-member who handles incoming messages.
+\vspace{-10mm}
+\caption{Nodehandle for subscriber}
+\end{figure}
+\\
+In $mine\_sub$ we have nodehandle.subscribe which subscribes to new messages - in this case on the \textit{miningLog}-topic.The second parameter is the message queue - how many messages will be kept in memory if our system cannot keep up with the flow of messages. Next is the pointer to the class-member who handles incoming messages. The last parameter is the keyword \textit{this}. The keyword points to the address of the object form which the instance is called.
